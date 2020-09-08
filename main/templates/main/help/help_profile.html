@@ -1,0 +1,14 @@
+{% extends "layout/help_basic.html" %}
+
+{% load static %}
+
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<h2>Профиль пользователя</h2>
+<p>После регистрации и авторизации пользователю становятся доступны инструменты для работы с его профилем: <img src="{% static 'main/help_images/link_profile.png' %}"></p>
+<p>Перейдя по ссылке <strong>"Мои сохранения"</strong>, пользователь попадает на страницу с сохраненными им шаблонами поиска и избранными объявлениями: <img src="{% static 'main/help_images/page_profile.png' %}" width="500px"></p>
+<p>Перейдя по ссылке <strong>"Изменить личные данные"</strong>, пользователь попадает на страницу с правки личных данных: <img src="{% static 'main/help_images/page_change_profile.png' %}" width="500px"></p>
+<p>Перейдя по ссылке <strong>"Изменить пароль"</strong>, пользователь попадает на страницу с правки правки пароля: <img src="{% static 'main/help_images/page_change_password.png' %}" width="500px"></p>
+<p>Перейдя по ссылкам<strong>"Выти"</strong> и <strong>"Удалить"</strong> пользователт осуществляет выход из системы и удаление пользователя соответственно.</p>
+{% endblock %}

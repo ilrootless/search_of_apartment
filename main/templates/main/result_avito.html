@@ -1,0 +1,67 @@
+{% extends "layout/basic.html" %}
+
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}Результат поиска{% endblock %}
+
+{% block content %}
+<div class="conteiner">
+<div class="params border p-3">
+        <h2><strong>Выбранные праметры</strong></h2>
+<form method="post">
+	{% csrf_token%}
+	{% bootstrap_form form %}
+	{% if user.is_authenticated or 'captcha' in request.session%}
+		{{ name }}
+        <input class="btn btn-primary" type="submit" formaction="{% url 'main:template_save' %}" value="Сохранить шаблон">
+	{% else %}
+        {{ captcha }}
+    {% endif %}
+	<div>
+	<input class="btn btn-primary" type="submit" formaction="{% url 'main:result_avito' %}" value="Авито">
+	<input class="btn btn-primary" type="submit" formaction="{% url 'main:result_cian' %}" value="ЦИАН">
+	</div>
+</form>
+</div>
+<div class="results p-3">
+        <h2><strong>Результаты поиска на Авито</strong></h2>
+{% if ads %}
+<ul class="list-unstyled">
+	{% for ad in ads %}
+	<li class="media my-5 p-3 border bg-light text-dark">
+		<a href="{{ ad.link }}" target="_blank">
+		{% if ad.image %}
+		<img class="mr-3" src="{{ ad.image }}">
+		{% else %}
+		<img class="mr-3" src="{% static 'main/empty.jpg' %}" width="250px">
+		{% endif %}
+		</a>
+		<div class="media-body">
+			<p class="text-right font-weight-bold">Авито</p>
+			<h3><a class="text-primary" href="{{ ad.link }}" target="_blank">{{ ad.title }}</a></h3>
+			<p>{{ ad.address }}</p>
+			<p class="text-right font-weight-bold">{{ ad.price}}</p>
+			<p class="text-right font-italic">{{ ad.date }}</p>
+			{% if user.is_authenticated %}
+				<form method="post" action="{% url 'main:favorite_save' %}">
+					{% csrf_token %}
+					<input type="hidden" value="{{ ad.title }}" name="title">
+					<input type="hidden" value="{{ ad.link }}" name="link">
+					<input type="hidden" value="{{ ad.image }}" name="image">
+					<input type="hidden" value="{{ ad.price }}" name="price">
+					<input type="hidden" value="{{ ad.address }}" name="address">
+					<input type="hidden" value="{{ ad.date }}" name="date">
+					<input type="hidden" value="Авито" name="agency">
+                    {% buttons submit='Сохранить в избраное' %}{% endbuttons %}
+				</form>
+			{% endif %}
+        </div>
+	</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% bootstrap_pagination page %}
+</div>
+</div>
+{% endblock %}

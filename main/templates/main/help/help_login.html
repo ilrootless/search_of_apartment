@@ -1,0 +1,15 @@
+{% extends "layout/help_basic.html" %}
+
+{% load static %}
+
+{% block title %}Авторизация/Регистрация{% endblock %}
+
+{% block content %}
+<h2>Инструкция авторизации/регистрации в ГИС</h2>
+<p>Для того, чтобы авторизоваться/зарегестрироваться в системе, нужно кликнуть ссылку <img src="{% static 'main/help_images/link_login.png' %}" alt="Ссылка 'вход' "> на любой странице сайта.</p>
+<p>На странице входа расположена форма для заполнения: <img src="{% static 'main/help_images/page_login.png' %}" atl="Страница входа" width="500px">.</p>
+<p>Для авторизации на сайте необходимо ввести свои логин и пароль и нажать на кнопку входа: <img src="{% static 'main/help_images/button_login.png' %}" alt="Кнопка входа"></p> 
+<p>Для регистрации на сайте необходимо нажать на кнопку регистрации: <img src="{% static 'main/help_images/button_login_reg.png' %}" alt="Кнопка регистрации">.</p>
+<p>На странице регистрации также расположена форма для заполнения: <img src="{% static 'main/help_images/page_register.png' %}" atl="Страница регистрации" width="500px"></p>
+<p>Для регистрации на сайте необходимо заполнить все обязательные поля формы и нажать кнопку: <img src="{% static 'main/help_images/button_register.png' %}" atl="Зарегистрироваться"></p>
+{% endblock %}

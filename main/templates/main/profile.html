@@ -1,0 +1,49 @@
+{% extends "layout/basic.html" %}
+
+{% load bootstrap4 %}
+{% load static %}
+
+{% block title %}Профиль пользователя{% endblock %}
+{% block content %}
+<h1 class="text-center">Профиль пользователя <strong>{{ user.username }}</strong></h1>
+{% if user.first_name and user.last_name %}
+<p>Здравствуйте, {{ user.first_name }} {{ user.last_name }}!</p>
+{% else %}
+<p>Здравтсвуйте!</p>
+{% endif %}
+<h2>Ваши сохраненные шаблоны поиска:</h2>
+{% if sts %}
+<ul>
+	{% for st in sts %}
+	<li>
+            <h3><a href="{% url 'main:template_search' pk=st.pk %}">{{ st }}</a></h3> 
+        <a class="btn btn-primary" href="{% url 'main:template_delete' pk=st.pk %}">Удалить</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endif %}
+<h2>Ваши сохраненные объявления:</h2>
+{% if fas %}
+<ul class="list-unstyled">
+	{% for fa in fas %}
+	<li class="media my-5 p-3 border">
+		<a href="{{ fa.link }}" target="_blank">
+		{% if fa.image %}
+		<img class="mr-3" src="{{ fa.image }}">
+		{% else %}
+		<img class="mr-3" src="{% static 'main/empty.jpg' %}">
+		{% endif %}
+		</a>
+		<div class="media-body">
+			<p class="text-right font-weight-bold">{{ fa.agency }}</p>
+			<h3><a href="{{ fa.link }}" target="_blank">{{ fa.title }}</a></h3>
+			<p>{{ fa.address }}</p>
+			<p class="text-right font-weight-bold">{{ fa.price}}</p>
+			<p class="text-right font-italic">{{ fa.date }}</p>
+			<p class="text-right"><a href="{% url 'main:favorite_delete' pk=fa.pk  %}">Удалить</a></p>
+		</div>
+	</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

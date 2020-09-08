@@ -1,0 +1,35 @@
+body {
+        font-family: "PT Sans", "Arial", sans-serif;
+        color: white;
+        background-image: url("back.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+}
+.root {
+        font-size: larger;
+}
+.dropdown-menu {
+        background-color: black;
+        position: relative;
+        right: 50px;
+}
+.conteiner {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+}
+.params {
+        flex: 1;
+}
+.result {
+        flex: 10;
+}
+.transparent{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+a:link {
+    color: #00ffff;
+}
+a:visited {
+    color: #7FFFD4;
+}

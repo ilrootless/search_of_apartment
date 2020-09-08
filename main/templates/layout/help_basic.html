@@ -1,0 +1,40 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type"
+		content="text/html; charset=utf-8">
+		<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>{% block title %}{% endblock %} - Справка</title>
+		{% bootstrap_css %}
+		<link rel="shortcut icon" href="{% static 'main/images/favicon.ico' %}" type="image/x-icon">
+		{% bootstrap_javascript jquery='slim' %}
+	</head>
+	<body class="container-fluid">
+		<header class="mb-4">
+			<h1 class="display-1 text-center">Справка</h1>
+		</header>
+		<div class="row">
+			<nav class="col-md-auto nav flex-column border">
+				<a class="nav-link root" href="{% url 'main:index' %}">На главную</a>
+				<a class="nav-link" href="{% url 'main:help' page="introduction" %}">Введение</a>
+				<a class="nav-link" href="{% url 'main:help' page='scope' %}">Область применения</a>
+				<a class="nav-link" href="{% url 'main:help' page='features' %}">Возможности</a>
+				<a class="nav-link" href="{% url 'main:help' page='help_search' %}">Поиск</a>
+				<a class="nav-link" href="{% url 'main:help' page='help_login' %}">Регистрация/Авторизация</a>
+				<a class="nav-link" href="{% url 'main:help' page='help_template' %}">Шаблоны</a>
+				<a class="nav-link" href="{% url 'main:help' page='help_favorite' %}">Избранное</a>
+				<a class="nav-link" href="{% url 'main:help' page='help_profile' %}">Профиль пользователя</a>
+			</nav>
+			<section class="col border py-2">
+				{% block content %}
+				{% endblock %}
+			</section>
+		</div>
+		<footer class="mt-3">
+			<p class="text-right font-italic">&copy; Четкий дипмломчик</p>
+		</footer>
+	</body>
+</html>
