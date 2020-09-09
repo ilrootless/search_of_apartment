@@ -4,19 +4,6 @@ import confidential_data
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = confidential_data.secret_key()
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,18 +48,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SOA.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': { 
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -110,7 +85,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Модель пользователя, используемая подсистемой разграничения доступа Django
 
@@ -126,3 +100,9 @@ DEFAULT_FROM_EMAIL = confidential_data.email_host_user()
 
 # Настройки CAPTCHA
 CAPTCHA_FONT_SIZE = 40
+
+# Подтягивания нужных настроек
+try:
+    from .local_settings import *
+except ImportError:
+    from .prog_settings import *
